@@ -83,7 +83,7 @@ all: $(EXE) $(BUILD_DIR)
 	@echo Build complete for $(ECHO_MESSAGE)
 
 $(EXE): $(OBJS)
-	$(CXX) -o $(BUILD_DIR)/$@ $^ $(CXXFLAGS) $(LIBS) $(LDFLAGS) ./src/tristaller.cpp
+	$(CXX) -o $(BUILD_DIR)/$@ $^ $(CXXFLAGS) $(LIBS) $(LDFLAGS) 
 
 clean:
 	rm -rf $(EXE) $(BUILD_DIR)
