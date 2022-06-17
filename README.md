@@ -1,15 +1,16 @@
 # Tristaller
 Tristaller is a Minecraft mod manager for clients and servers running on Linux and Windows. The goal is to easily install modded profiles and keep these updated by simply dropping a "modpack_update.zip" on the portable executable.
 
-What sets Tristaller apart from other projects is that no 3rd party game launchers are required. No installation into the system is required (only a single executable). Lastly the regular buildsystem for ImGui with Vulkan backend utilizes CMake, this has been stripped out and replaced by a good ol' Makefile.
+What sets Tristaller apart from other projects is that no 3rd party game launchers are required. No installation into the system is required (only a single executable). Last but not least the regular buildsystem for ImGui with Vulkan backend utilizes CMake, this has been stripped out and replaced by a good ol' Makefile.
 
 ![Installer Screenshot](images/tristaller_screenshot.png)
+In the image above you can see the UI so far (left), the ImGui demo window (right) which pops-up when hitting the `Show Demo` button. This is useful for finding optimal UI elements and learning about the possibilities of ImGui.
 
 # Overview
 ```
 .
 ├── build
-├── group_panel.cpp             -> To-be used as a UI element wrapper (credit: https://github.com/ocornut/imgui/issues/1496#issuecomment-655048353)
+├── group_panel.cpp             -> To-be integrated as a UI element wrapper (credit: https://github.com/ocornut/imgui/issues/1496#issuecomment-655048353)
 ├── imgui.ini                   -> Stores UI layout
 ├── lib                         -> Submodules location
 │   ├── glfw
@@ -18,7 +19,7 @@ What sets Tristaller apart from other projects is that no 3rd party game launche
 ├── README.md
 └── src
     ├── io.cpp
-    ├── main.cpp                -> ImGui example as program entry
+    ├── main.cpp                -> ImGui (GLFW, Vulkan) example as program entry
     └── tristaller.cpp          -> UI code
 ```
 
@@ -54,4 +55,4 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
 
 # Archive
 ![Tristaller QT](images/tristaller_qt.png)
-This project started out in [QT](https://www.qt.io/) and Python. The choice to use ImGui was made because not all features included in QT are permitted to be used in an Open Source project. As a bonus Python is ditched for C++ and it is possible to write shaders for ImGui (e.g. for a cool moving background).
+This project started out in [QT](https://www.qt.io/) and Python. The choice to use ImGui instead was made because not all features included in QT are permitted to be used in an Open Source project. As a bonus Python is ditched for C++ and it is possible to write shaders for ImGui (e.g. for a cool moving background).
