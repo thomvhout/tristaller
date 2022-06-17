@@ -52,5 +52,6 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
 - [ ] CLI support
 - [ ] Implement path handling for each platform
 
+# Archive
 ![Tristaller QT](images/tristaller_qt.png)
 This project started out in [QT](https://www.qt.io/) and Python. The choice to use ImGui was made because not all features included in QT are permitted to be used in an Open Source project. As a bonus Python is ditched for C++ and it is possible to write shaders for ImGui (e.g. for a cool moving background).
