@@ -31,9 +31,17 @@ Note: At the moment this project can only be built on Linux.
 
 Install the [Vulkan SDK](https://www.vulkan.org/tools#download-these-essential-development-tools).
 
+Along with it's prerequisites (currently only listed for Linux):
+
+- vulkan-devel or vulkan-intel
+- assimp
+- libxcb
+- glm
+- glfw-x11
+
 Edit the Vulkan SDK path in the Makefile to your SDK install location.
 
-`$ make` Build the project.
+`$ make all` Build the project.
 
 `$ ./build/tristaller` Run the executable.
 
@@ -45,6 +53,9 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
 ## Build
 - [ ] Makefile: Dynamic `VULKAN_SDK_PATH` in Windows
 - [ ] Port Build for Windows: Potentially use `imgui/examples/example_glfw_opengl3/build_win32.bat`
+- [ ] Link GLFW instead of using system install
+- [ ] Remove `libzip` Cmake dependency
+- [ ] Integrate `glib` testing in a copied MC environment
 ## UI
 - [X] Use ImGui `modals` as popup window for install process
 ## Misc
