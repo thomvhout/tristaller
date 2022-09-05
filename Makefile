@@ -1,3 +1,9 @@
+###################################################################
+### 								###
+###    Based on imgui/examples/example_glfw_opengl3/Makefile    ###
+### 								###
+###################################################################
+
 #
 # Cross Platform Makefile
 # Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
@@ -10,8 +16,6 @@
 # MSYS2:
 #   pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain mingw-w64-x86_64-glfw
 #
-
-# Based on imgui/examples/example_glfw_opengl3/Makefile
 
 .PHONY: all clean debug
 .DEFAULT_GOAL := all
