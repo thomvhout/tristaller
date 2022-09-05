@@ -59,6 +59,7 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
     - [ ] Switch to `ZipLib` from `libzip` (supports C++ streams)
 - [ ] Integrate `glib` testing in a temporary MC environment
 ## UI
+- [ ] Create a patch of ImGui's main to easily update in the future.
 - [X] Use ImGui `modals` as popup window for install process
 ## Misc
 - [ ] Portability: Write used paths into executable itself
