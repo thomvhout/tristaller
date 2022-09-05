@@ -50,12 +50,14 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
 - [ ] Parse pack from path
 - [ ] Create/install/remove pack
     - [ ] Parse `profiles.json`
+- [ ] Find solution to edge case where mod author improperly updates `[mod].jar/fabric.mod.json` (version, client-/server side or dependencies)
 ## Build
 - [ ] Makefile: Dynamic `VULKAN_SDK_PATH` in Windows
 - [ ] Port Build for Windows: Potentially use `imgui/examples/example_glfw_opengl3/build_win32.bat`
 - [ ] Link GLFW instead of using system install
 - [ ] Remove `libzip` Cmake dependency
-- [ ] Integrate `glib` testing in a copied MC environment
+    - [ ] Switch to `ZipLib` from `libzip` (supports C++ streams)
+- [ ] Integrate `glib` testing in a temporary MC environment
 ## UI
 - [X] Use ImGui `modals` as popup window for install process
 ## Misc
