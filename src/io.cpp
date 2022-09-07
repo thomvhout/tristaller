@@ -3,7 +3,7 @@
 #include <iostream>
 #include <regex>
 
-vector<string> grep_dir(string path, string regex_name, bool recursive) {
+vector<string> grep_dir(const string path, const string regex_name, const bool recursive) {
     vector<string> results = {};
     #ifdef __linux__
     std::filesystem::path sandbox = filesystem::path(path);
