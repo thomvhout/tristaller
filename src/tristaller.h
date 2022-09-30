@@ -4,8 +4,8 @@
 #include "io.h"
 
 namespace tristaller {
+    void initialize();
     void renderUI();
-    void getPlatform();
 }
 
 #endif
