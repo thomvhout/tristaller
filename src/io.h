@@ -7,6 +7,8 @@
 
 using namespace std;
 
-vector<string> grep_dir(string path, string regex_name, bool recursive);
+vector<string> grep_dir(const string path, const string regex_name, const bool recursive);
+
+bool path_exists(const string path);
 
 #endif

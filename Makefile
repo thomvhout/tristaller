@@ -1,3 +1,9 @@
+###################################################################
+### 								###
+###    Based on imgui/examples/example_glfw_opengl3/Makefile    ###
+### 								###
+###################################################################
+
 #
 # Cross Platform Makefile
 # Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
@@ -11,7 +17,8 @@
 #   pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain mingw-w64-x86_64-glfw
 #
 
-# Based on imgui/examples/example_glfw_opengl3/Makefile
+.PHONY: all clean debug
+.DEFAULT_GOAL := all
 
 .PHONY: all clean debug
 .DEFAULT_GOAL := all
@@ -28,6 +35,7 @@ UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
 
 VULKAN_SDK_PATH=/home/$(LOGNAME)/hdd/project/vulkan/sdk/1.2.131.2/x86_64
+=======
 LIBZIP_BUILD_PATH=./lib/libzip/build/lib/
 
 CXXFLAGS = -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends
@@ -40,6 +48,8 @@ LIBS = $(LIBZIP_BUILD_PATH)/libzip.so
 ## BUILD FLAGS PER PLATFORM
 ##---------------------------------------------------------------------
 
+# TODO Use local GLFW instead of system
+# TODO Obtain local vulkan-sdk
 ifeq ($(UNAME_S), Linux) #LINUX
 	ECHO_MESSAGE = "Linux"
 	LIBS += $(LINUX_GL_LIBS) `pkg-config --static --libs glfw3`
@@ -83,11 +93,15 @@ $(BUILD_DIR)/%.o:$(IMGUI_DIR)/%.cpp
 $(BUILD_DIR)/%.o:$(IMGUI_DIR)/backends/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
+# TODO Don't build libzip examples
 $(LIBZIP_BUILD_PATH)/libzip.so: $(LIBZIP_BUILD_PATH)/../../src/ziptool.c 
 	cd lib/libzip/ && \
 	mkdir -p build && cd build && \
 	cmake ../ && \
 	make
+
+# vulkan_sdk
+# 	cd $(VULKAN_SDK_PATH) && ./vulkan_sdk
 
 all: $(EXE) $(BUILD_DIR)
 	@echo Build complete for $(ECHO_MESSAGE)
