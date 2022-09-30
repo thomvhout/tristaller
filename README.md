@@ -56,7 +56,6 @@ Edit the Vulkan SDK path in the Makefile to your SDK install location.
 - [ ] Port Build for Windows: Potentially use `imgui/examples/example_glfw_opengl3/build_win32.bat`
 - [ ] Link GLFW instead of using system install
 - [ ] Remove `libzip` Cmake dependency
-    - [ ] Switch to `ZipLib` from `libzip` (supports C++ streams)
 - [ ] Integrate `glib` testing in a temporary MC environment
 ## UI
 - [ ] Create a patch of ImGui's main to easily update in the future.
