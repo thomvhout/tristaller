@@ -33,6 +33,7 @@
 
 
 #include "zip_utils.h"
+#include "io.h"
 
 #include <zip.h>
 
@@ -41,6 +42,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+
+#include <string>
 
 static int
 get_data(void **datap, size_t *sizep, const char *archive) {
@@ -126,9 +129,13 @@ void listFiles() {
 
 }
 
-int readFile() {
-//int main(int argc, char *argv[]) {
-    const char *archive = "Chunky-1.2.217.jar";
+int readFile(const string path) {
+    if (!path_exists(path)) {
+        return false;
+    }
+
+    //int main(int argc, char *argv[]) {
+    const char *archive = path;
     zip_source_t *src;
     zip_t *za;
     zip_error_t error;

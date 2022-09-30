@@ -15,8 +15,11 @@
 using std::string, std::cout, std::endl;
 
 vector<string> mods = {};
+// TODO move to seperate utils file
 struct bool_wrapper { bool value = false; };
 vector<bool_wrapper> checkboxes = {};
+
+static const string last_path_written_in_binary = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 namespace tristaller {
     static bool show_demo_window = false;
@@ -25,17 +28,20 @@ namespace tristaller {
 
     static const string mc_dir = (string)getenv("HOME") + "/.minecraft/";
     static const string installation_dir = mc_dir + "installations/";
+    // TODO generate path dynamically
     static const string mod_dir = installation_dir + "/fabric_1.16.5/" + "mods/";
 
     void initialize() {
         // Populate installed mods list
-            // TODO Handle dir not found
+            // TODO Handle dir not found (empty vector)
         for (auto m : grep_dir(mod_dir, "(.*.jar)", false)) {
             mods.push_back(m);
             bool_wrapper bw = {};
             checkboxes.push_back(bw);
         }
-        if (readFile()) {
+
+        //TODO read "*.jar/fabric.mod.json"
+        if (!readFile("../Chunky-1.2.217.jar")) {
             cout << "[ERROR]: \tAn error occured while handeling zip file" << endl;
             throw;
         }
@@ -66,12 +72,13 @@ namespace tristaller {
         bool lbSuccess = ImGui::ListBoxHeader("##lbMods", ImVec2(-FLT_MIN, mods.size() * ImGui::GetTextLineHeightWithSpacing()));
         if (lbSuccess) {
         for (long unsigned int n = 0; n < mods.size(); n++) {
+            // TODO Cache checkbox name
             string cb_name = "##" + std::to_string(n);
             if (ImGui::Checkbox(cb_name.c_str(), &checkboxes[n].value)) {
                 // Handle Selection
             }
 
-            ImGui::SameLine(); 
+            ImGui::SameLine();
 
             string& item = mods[n]; 
             const bool is_selected = (item_current_idx == n);

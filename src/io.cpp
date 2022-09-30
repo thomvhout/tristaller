@@ -1,11 +1,19 @@
 #include "io.h"
 
 #include <iostream>
+#include <fstream>
 #include <regex>
 
+// TODO Check if path exists
 vector<string> grep_dir(const string path, const string regex_name, const bool recursive) {
     vector<string> results = {};
     #ifdef __linux__
+    // Check path is valid
+    std::ifstream test(path);
+    if (!test) {
+        return results;
+    }
+
     std::filesystem::path sandbox = filesystem::path(path);
     if (recursive) {
         //std::cout << "\nrecursive_directory_iterator:\n";
@@ -48,4 +56,10 @@ vector<string> grep_dir(const string path, const string regex_name, const bool r
     #endif
 
     return results;
+}
+
+bool path_exists(const string path) {
+#ifdef __linux__
+#endif
+    return false;
 }
