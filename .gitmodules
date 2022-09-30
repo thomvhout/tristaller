@@ -7,5 +7,5 @@
 	url = https://github.com/glfw/glfw
 	branch = 3.3-stable
 [submodule "libzip"]
-	path = libzip
+	path = lib/libzip
 	url = https://github.com/nih-at/libzip
