@@ -6,6 +6,6 @@
 	path = lib/glfw
 	url = https://github.com/glfw/glfw
 	branch = 3.3-stable
-[submodule "libzip"]
+[submodule "lib/libzip"]
 	path = lib/libzip
 	url = https://github.com/nih-at/libzip
