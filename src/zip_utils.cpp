@@ -133,7 +133,7 @@ int readFile(const string path) {
     }
 
     //int main(int argc, char *argv[]) {
-    const char *archive = path;
+    const char *archive = path.c_str();
     zip_source_t *src;
     zip_t *za;
     zip_error_t error;

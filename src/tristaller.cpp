@@ -30,9 +30,13 @@ namespace tristaller {
     static const string mc_dir = (string)getenv("HOME") + "/.minecraft/";
     static const string installation_dir = mc_dir + "installations/";
     // TODO generate path dynamically
-    static const string mod_dir = installation_dir + "/fabric_1.16.5/" + "mods/";
+    static const string mod_dir = installation_dir + "/fabric-1.18.1/" + "mods/";
 
     void initialize() {
+        ImGuiIO& io = ImGui::GetIO();
+        if (io.ConfigFlags & !ImGuiConfigFlags_DockingEnable) {};
+        if (io.ConfigFlags & !io.ConfigDockingWithShift) {};
+
         // Populate installed mods list
             // TODO Handle dir not found (empty vector)
         for (auto m : grep_dir(mod_dir, "(.*.jar)", false)) {
@@ -44,7 +48,7 @@ namespace tristaller {
         //TODO read "*.jar/fabric.mod.json"
         if (!readFile("../Chunky-1.2.217.jar")) {
             cout << "[ERROR]: \tAn error occured while handeling zip file" << endl;
-            throw;
+            //throw;
         }
 
         return;
@@ -53,9 +57,11 @@ namespace tristaller {
     void renderUI() {
         static long unsigned int item_current_idx = 0; // Here we store our selection data as an index.
 
+        /*
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
         ImGui::SetNextWindowPos(viewport->WorkPos);
         ImGui::SetNextWindowSize(viewport->WorkSize);
+        */
 
         ImGui::Begin("Mods");
 
@@ -70,35 +76,39 @@ namespace tristaller {
         }
 
         //                                     ## => Hide label/name
-        bool lbSuccess = ImGui::ListBoxHeader("##lbMods", ImVec2(-FLT_MIN, mods.size() * ImGui::GetTextLineHeightWithSpacing()));
-        if (lbSuccess) {
-        for (long unsigned int n = 0; n < mods.size(); n++) {
-            // TODO Cache checkbox name
-            string cb_name = "##" + std::to_string(n);
-            if (ImGui::Checkbox(cb_name.c_str(), &checkboxes[n].value)) {
+        if (ImGui::ListBoxHeader("##lbMods", ImVec2(0, mods.size() * ImGui::GetTextLineHeightWithSpacing()))) {
+            for (long unsigned int n = 0; n < mods.size(); n++) {
+                // TODO Cache checkbox name
+                string cb_name = "##" + std::to_string(n);
+                if (ImGui::Checkbox(cb_name.c_str(), &checkboxes[n].value)) {
                 // Handle Selection
-            }
-            /*
-                for (int n = 0; n < mods.size(); n++) {
-            string& item = mods[n]; 
-            const bool is_selected = (item_current_idx == n);
-            if (ImGui::Selectable(item.c_str(), is_selected)) {
-                // Handle Selection
-                item_current_idx = n;
-            }
-            */
+                }
 
-            // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
-            if (is_selected)
-                ImGui::SetItemDefaultFocus();
+                ImGui::SameLine();
+
+                string& item = mods[n]; 
+                const bool is_selected = (item_current_idx == n);
+                if (ImGui::Selectable(item.c_str(), is_selected)) {
+                    // Handle Selection
+                    item_current_idx = n;
+                }
+                // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+                if (is_selected) {
+                    ImGui::SetItemDefaultFocus();
+                }
             }
             ImGui::ListBoxFooter();
         }
 
+        ImGui::SameLine();
+        if (ImGui::ListBoxHeader("##lbModInfo")) {
+            ImGui::Text("%s", mods[item_current_idx].c_str());
+            ImGui::ListBoxFooter();
+        }
         ImGui::End();
     }
 
-    void getPlatform(){
+    void getPlatform() {
         #ifdef __linux__
             std::printf("Linux");
         #elif _WIN32

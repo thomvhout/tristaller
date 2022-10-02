@@ -35,7 +35,6 @@ UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
 
 VULKAN_SDK_PATH=/home/$(LOGNAME)/hdd/project/vulkan/sdk/1.2.131.2/x86_64
-=======
 LIBZIP_BUILD_PATH=./lib/libzip/build/lib/
 
 CXXFLAGS = -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends
@@ -94,7 +93,7 @@ $(BUILD_DIR)/%.o:$(IMGUI_DIR)/backends/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 # TODO Don't build libzip examples
-$(LIBZIP_BUILD_PATH)/libzip.so: $(LIBZIP_BUILD_PATH)/../../src/ziptool.c 
+$(LIBZIP_BUILD_PATH)/libzip.so:
 	cd lib/libzip/ && \
 	mkdir -p build && cd build && \
 	cmake ../ && \
